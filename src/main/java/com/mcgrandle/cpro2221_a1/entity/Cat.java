@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cat
 {
-    //declaring the cat's attributes.
+    //declaring the cat class attributes.
     private int id;
     private String name;
     private int age;
