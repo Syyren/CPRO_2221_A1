@@ -34,8 +34,8 @@ public class CatRepository
     //method that saves a cat object to the list
     public Cat save(Cat cat)
     {
-        validate.Age(cat.getAge());
         validate.Name(cat.getName());
+        validate.Age(cat.getAge());
         cat.setId(catCounter++);
         list.add(cat);
         return cat;
