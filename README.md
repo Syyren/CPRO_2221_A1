@@ -5,7 +5,7 @@
 
 This project serves as a backend for dealing with Cat endpoints.
 
-You may inject a payload a cat via
+You may inject a payload (insert a cat) via
 http://localhost:8081/cat/create
 
 You may update an entity via
