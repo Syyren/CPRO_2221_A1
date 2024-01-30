@@ -44,21 +44,6 @@ public class CatRepository
         cat.setAge(update.getAge());
         return cat;
     }
-    //method that takes in the cat id and updates the name
-    
-    public void updateName(int id, String name)
-    {
-        list.stream()
-                .filter(cat -> cat.getId() == id)
-                .forEach(cat -> cat.setName(name));
-    }
-    //method that takes in the cat id and updates the age
-    public void updateAge(int id, int age)
-    {
-        list.stream()
-                .filter(cat -> cat.getId() == id)
-                .forEach(cat -> cat.setAge(age));
-    }
     //method that takes in a cat id, checks if it's in the repository, then deletes if so
     public String delete(int id)
     {
