@@ -14,6 +14,7 @@ public class Validation
 
     public void Name(String name)
     {
+        if (name == null) { throw new CustomException("Name cannot be null!"); }
         if (name.isEmpty()) { throw new CustomException("Name cannot be empty!"); }
     }
 

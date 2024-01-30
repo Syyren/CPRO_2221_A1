@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class CustomExceptionHandler
 {
     @ExceptionHandler(CustomException.class)
+    //returning a response entity for the client to receive an error message
     public ResponseEntity<String> handleCustomException(CustomException exception)
     {
-        String message = "Error " + exception.getMessage();
+        String message = "Error: " + exception.getMessage();
         return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
