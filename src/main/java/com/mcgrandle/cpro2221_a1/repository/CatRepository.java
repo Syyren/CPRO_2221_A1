@@ -32,7 +32,20 @@ public class CatRepository
         list.add(cat);
         return cat;
     }
+    //method that updates and returns an updated cat
+    public Cat update(int id, Cat update)
+    {
+        Cat cat = list.stream()
+                .filter(c -> c.getId() == id)
+                .findAny()
+                .orElse(null);
+        if (cat == null) { throw new RuntimeException("Cat not found with id: " + id); }
+        cat.setName(update.getName());
+        cat.setAge(update.getAge());
+        return cat;
+    }
     //method that takes in the cat id and updates the name
+    
     public void updateName(int id, String name)
     {
         list.stream()
