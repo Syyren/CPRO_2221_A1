@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/cat")
 public class Controller
 {
-    //declaring the catList and initializing catService
+    //initializing catService object to interface with the controller and repository
     private final CatService catService = new CatService();
-    private List<Cat> catList;
+
     //inserts a new cat into the "db"
     @PostMapping("/create")
     public Cat createCat(@RequestBody Cat cat)
@@ -21,7 +21,7 @@ public class Controller
         return catService.saveCat(cat);
     }
     //gets all cats in the "db"
-    @GetMapping("search/all")
+    @GetMapping("/search/all")
     public List<Cat> getAllCats() { return catService.getAllCats(); }
     //gets a cat from the "db" via its id
     @GetMapping("search/{catId}")
@@ -32,25 +32,19 @@ public class Controller
     @PutMapping("/update/{catId}")
     public Cat updateCat(@PathVariable int catId, @RequestBody Cat updatedCat)
     {
-        catList = getAllCats();
+        List<Cat> catList = getAllCats();
         for (Cat cat : catList)
         {
             if (cat.getId() == catId)
             {
-                cat.setName(updatedCat.getName());
-                cat.setAge(updatedCat.getAge());
-                return cat;
+                catService.updateCatName(catId, updatedCat.getName());
+                catService.updateCatAge(catId, updatedCat.getAge());
+                return updatedCat;
             }
         }
         throw new RuntimeException("No cats found with id: " + catId + ".");
     }
     //deletes a cat from the "db" by id
     @DeleteMapping("/delete/{catId}")
-    public String deleteCat(@PathVariable int catId)
-    {
-        catList = getAllCats();
-        //add exception handling
-        catList.removeIf(cat -> cat.getId() == catId);
-        return "Cat " + catId + " has been deleted.";
-    }
+    public String deleteCat(@PathVariable int catId) { return catService.delCat(catId); }
 }

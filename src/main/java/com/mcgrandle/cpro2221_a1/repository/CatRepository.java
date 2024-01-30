@@ -1,4 +1,5 @@
 package com.mcgrandle.cpro2221_a1.repository;
+
 import com.mcgrandle.cpro2221_a1.entity.Cat;
 import org.springframework.stereotype.Repository;
 
@@ -30,5 +31,26 @@ public class CatRepository
         cat.setId(catCounter++);
         list.add(cat);
         return cat;
+    }
+    //method that takes in the cat id and updates the name
+    public void updateName(int id, String name)
+    {
+        list.stream()
+                .filter(cat -> cat.getId() == id)
+                .forEach(cat -> cat.setName(name));
+    }
+    //method that takes in the cat id and updates the age
+    public void updateAge(int id, int age)
+    {
+        list.stream()
+                .filter(cat -> cat.getId() == id)
+                .forEach(cat -> cat.setAge(age));
+    }
+    //method that takes in a cat id, checks if it's in the repository, then deletes if so
+    public String delete(int id)
+    {
+        boolean removed = list.removeIf(cat -> cat.getId() == id);
+        if (!removed) { throw new RuntimeException("Cat not found with id: " + id); }
+        return "Cat " + id + " removed successfully.";
     }
 }

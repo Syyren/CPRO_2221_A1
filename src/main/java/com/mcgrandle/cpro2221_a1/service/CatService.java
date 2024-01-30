@@ -13,10 +13,13 @@ public class CatService
     @Autowired
     private CatRepository catRepository;
     //method that passes the cat object to the repository and saves it
-    public Cat saveCat(Cat cat) {
-        return catRepository.save(cat);
-    }
+    public Cat saveCat(Cat cat) { return catRepository.save(cat); }
+    //passes the updated name to the repository
+    public void updateCatName(int id, String name) { catRepository.updateName(id, name); }
+    //passes the updated age to the repository
+    public void updateCatAge(int id, int age) { catRepository.updateAge(id, age); }
     //method that passes the cat id to the repository to pull a matching object
+    public String delCat(int id) { return catRepository.delete(id); }
     public Cat getById(int id) {
         return catRepository.findById(id);
     }
